@@ -1,6 +1,38 @@
 # Streaming 3D Detection with MultiModalityDet3DInferencer and ZeroMQ
 <img width="1920" height="1080" alt="Preview" src="https://github.com/user-attachments/assets/7d101562-d21a-44db-b04a-740527ace361" />
 
+## System Architecture
+- **Server (server.py)**: Performs MVX-Net inference using MultiModalityDet3DInferencer, renders 3D bounding boxes, and streams results.
+- **Client (client.py)**: Initializes a REQ socket, sends requests to the server, receives JPEG bytes and metadata, decodes them into images, and displays them on a PyQt5 interface.
+- **Protocol**: ZeroMQ with REQ-REP pattern (synchronous to prevent memory congestion).
+- **Dataset**: KITTI 3D dataset with LiDAR and camera inputs.
+
+## Key Features
+
+### 1. Server Features
+- **Real-time Inference**: MMDetection3D processes without saving files, directly encoding images.
+- **Network Streaming**: Utilizes ZeroMQ with REQ-REP synchronization.
+- **Memory Management**: Automatic cleanup and CUDA cache clearing.
+- **Fallback Support**: Operates without requiring .pkl files.
+- **FPS Control**: Adjustable streaming speed.
+- **Statistics**: Tracks FPS and processing time.
+
+### 2. Client Features
+- **Real-time Display**: PyQt5 GUI with a dark theme.
+- **Frame Buffer**: Thread-safe with a 100-frame history.
+- **Navigation Controls**: Play/Pause, Previous/Next, and Seek functionalities.
+- **Live/Replay Modes**: Seamless switching between live streaming and replay.
+- **Zoom/Pan**: Flexible image display controls.
+- **Statistics Display**: Shows FPS, frame count, and connection status.
+- **Save Functionality**: Saves the current frame.
+- **Log Viewer**: Real-time activity monitoring.
+
+### 3. Synchronization
+- **REQ-REP Pattern**: Server awaits ACK from the client.
+- **Timeout Handling**: 5-second timeout to prevent hangs.
+- **Connection Monitoring**: Displays connection status.
+- **Error Recovery**: Automatically skips erroneous frames.
+
 # Resources
 <div align="center">
   <img src="resources/mmdet3d-logo.png" width="600"/>
