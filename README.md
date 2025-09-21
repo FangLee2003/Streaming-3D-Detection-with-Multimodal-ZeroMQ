@@ -1,3 +1,7 @@
+# Streaming 3D Detection with MultiModalityDet3DInferencer and ZeroMQ
+<img width="1920" height="1080" alt="Preview" src="https://github.com/user-attachments/assets/7d101562-d21a-44db-b04a-740527ace361" />
+
+# Resources
 <div align="center">
   <img src="resources/mmdet3d-logo.png" width="600"/>
   <div>&nbsp;</div>
